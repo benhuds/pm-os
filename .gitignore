@@ -1,0 +1,8 @@
+# Memory (personal to each user's setup)
+.claude/projects/
+
+# OS artifacts
+.DS_Store
+*.swp
+*.swo
+*~
