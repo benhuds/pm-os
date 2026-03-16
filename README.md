@@ -20,18 +20,18 @@ The OS runs on a **Sense > Act > Reflect** loop:
 ```
 +-------------------------------------------------+
 |  SENSE (automated)                              |
-|  Daily brief surfaces what needs attention      |
-|  across your issue tracker, support tickets,    |
-|  Slack, and email                               |
+|  /brief surfaces what needs attention across    |
+|  your issue tracker, support tickets, Slack     |
+|  mentions, team board, email, and calls         |
 +-------------------------------------------------+
-|  ACT (you)                                      |
-|  Friction log tracks what YOU are doing         |
-|  to unblock customers -- not who you're         |
-|  assigning it to                                |
+|  ACT (you + tracked)                            |
+|  Friction log tracks customer blockers          |
+|  Action tracker logs what you did each day      |
+|  /actions log captures your moves as you go     |
 +-------------------------------------------------+
 |  REFLECT (automated + you)                      |
-|  Weekly reflection pre-fills with data,         |
-|  you add the narrative                          |
+|  /weekly pulls from actions + friction to       |
+|  pre-fill your 1:1 doc with real evidence       |
 +-------------------------------------------------+
 ```
 
@@ -70,7 +70,19 @@ Also includes support ticket trends (new vs resolved, top categories, SLA health
 
 Output is formatted to paste directly into your 1:1 doc and team weekly updates.
 
-### 4. Friction Log
+### 4. `/actions` — Action Tracker (Claude Code Skill)
+Tracks what you did each day against brief signals. One weekly file, no sprawl.
+```
+/actions prepped package for Sarah     # Log what you did (auto-augmented)
+/actions list                          # Scorecard with linked sources
+/actions carryover                     # Review stale items from earlier in the week
+```
+
+The brief auto-generates action items each morning. You log completions throughout the day. On Friday, `/weekly` pulls from the same file — no double-entry.
+
+The action tracker cross-references the friction log: friction items appear on the scorecard so nothing falls through the cracks between the two systems.
+
+### 5. Friction Log
 A living system for tracking and dissolving blockers. Not a backlog — every entry has a **"My Move"** field that captures what YOU are doing, not who you're waiting on.
 
 ```
@@ -105,6 +117,8 @@ pm-os/
 |       +-- brief/skill.md             # /brief -- ad-hoc daily brief
 |       +-- weekly/skill.md            # /weekly -- Friday reflection
 |       +-- friction/skill.md          # /friction -- manage friction log
+|       +-- actions/skill.md           # /actions -- weekly action tracker
++-- actions/                           # Weekly action tracker files (one per week)
 +-- friction/
 |   +-- active/                        # Current friction entries
 |   +-- dissolved/                     # Dissolved friction (with how + when)

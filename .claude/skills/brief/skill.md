@@ -1,6 +1,6 @@
 ---
 name: brief
-description: Daily morning brief for PM Extreme Ownership. Surfaces action items, unclaimed opportunities, support ticket pulse, and Slack/email signals across your issue tracker, support platform, Slack, and email.
+description: Daily morning brief for PM Extreme Ownership. Surfaces action items, unclaimed opportunities, support ticket pulse, Slack mentions, team board issues, and signals across your issue tracker, support platform, Slack, and email.
 argument-hint: "[optional: customer name or area to focus on]"
 ---
 
@@ -22,13 +22,33 @@ Search for recent issues (past 7 days) in the [your team name] team that mention
 Use Glean search with `app: zendesk` (or your support platform) to find open tickets mentioning [your product area keywords] updated recently. Note: customer, severity, status, assignee. Flag SEV1/SEV2 and SLA breaches.
 
 ### 4. Slack Signals
-Use Glean search with `app: slack` to find messages from the past 24 hours in channels: [your-product-channel]. Look for customer escalations, CSM questions, blocker mentions, enablement requests.
+Run TWO Glean searches for Slack:
+
+**a) Mentions of you:** Search `app: slack` for "[your name]" with `updated: past_week`. Look for threads where someone tagged you and is waiting for a response. Classify each as:
+- **Needs your input** — someone asked you a question or tagged you for review, and you haven't responded (or the thread moved on without your input)
+- **You responded, monitor** — you already replied but the thread is still active
+- Skip threads you initiated yourself or where no action is needed from you.
+
+**b) Keyword signals:** Search `app: slack` for "[your product area keywords] blocker escalation" with `updated: today` to catch new escalations or customer issues in any channel.
 
 ### 5. Email
 Use Glean search with `app: gmailnative` to find recent emails mentioning [your product area keywords] involving [your name]. Note if a response is needed.
 
-### 6. Existing Friction Log
+### 6. Call Recordings
+Use Glean search with `app: gong` (or your recording tool) for calls from the past 48 hours mentioning [your product area keywords]. Look for: customer pain points or escalations, blockers raised on calls, feature requests, and any negative sentiment. Note: customer name, call participants, and the key signal.
+
+### 7. Existing Friction Log
 Read all files in `friction/active/` to know what's already being tracked. This is critical to avoid duplicates when auto-generating new friction entries.
+
+### 8. Team Customer Issues Board
+Use issue tracker MCP tools to list issues with `team: [your team board team]` and `label: [your team board label]`. Exclude Done/Resolved/Cancelled. This is your team's customer support board. For each issue note: ID, title, priority, status, assignee, customer name.
+
+This is a **read-only scan** — it surfaces team-wide customer issues so you have full visibility, even on issues not assigned to you. Do NOT auto-create friction entries from this board. Only flag issues here that are Urgent or that have been in the same status for >7 days with no update.
+
+### 9. Weekly Action Tracker
+Read the current week's action file at `actions/week-YYYY-MM-DD.md` (where the date is the Monday of this week). If it exists, identify:
+- Unchecked items from previous days (these are **carryovers** to surface)
+- Actions already logged (to avoid duplicating)
 
 $ARGUMENTS
 
@@ -54,10 +74,29 @@ SUPPORT PULSE
 - Hottest ticket: [#NNNNN](ticket-url) — [most urgent + why]
 
 SLACK SIGNALS
-- [one-line per notable thread] ([thread](slack-url))
+Needs your input:
+- [thread summary — who's waiting, what they need] ([thread](slack-url))
+You responded, monitor:
+- [thread summary] ([thread](slack-url))
+New signals:
+- [one-line per notable keyword-matched thread] ([thread](slack-url))
 
 EMAIL
 - [one-line per thread needing response] ([thread](email-url))
+
+CALL SIGNALS
+- [one-line per notable call] ([call](call-url))
+
+TEAM CUSTOMER ISSUES ([X] open)
+[List ALL open issues (exclude Done, Resolved, Cancelled, Closed). Group by priority:]
+[Urgent] [Issue ID](issue-url): [customer] — [summary] — [assignee] — [status]
+[High] [Issue ID](issue-url): [customer] — [summary] — [assignee] — [status]
+[Medium] [Issue ID](issue-url): [customer] — [summary] — [assignee] — [status]
+(This section is read-only visibility — no friction entries auto-created from here)
+
+CARRYOVERS (from earlier this week)
+- [ ] [unchecked item from previous days] — [customer] ([source](url))
+(If no carryovers or it's Monday: "Fresh week")
 
 TODAY'S FOCUS
 Based on everything above, the single highest-leverage thing you can do for a customer today: [recommendation]
@@ -109,6 +148,30 @@ FRICTION LOG
 
 If running the brief on subsequent days and friction entries already exist for the same customer+topic, do NOT create duplicates. Instead, append a progress entry to the existing file with any new information from today's brief.
 
+## Auto-Generate Weekly Action Items
+
+After generating friction entries, update the weekly action tracker at `actions/week-YYYY-MM-DD.md` (Monday of current week):
+
+1. If the file doesn't exist, create it with `# Week of YYYY-MM-DD`.
+2. Add a section for today: `## [DayName] YYYY-MM-DD` with a `### From Brief` subsection.
+3. Generate one checkbox action item (`- [ ]`) for each:
+   - ACTION NEEDED item (from the brief)
+   - Notable call signal that warrants follow-up
+   - Slack signal that needs your response
+   - Email thread needing a reply
+   - Unclaimed opportunity worth claiming
+4. Each item must include: customer name, one-line action, and a linked source.
+5. For items that also have a `friction/active/` entry, still add an action item but prefix with a fire indicator and reference the friction file. This ensures friction items appear on the weekly scorecard and nothing falls through the cracks.
+6. If previous days in the same week have unchecked items, leave them as-is (they'll show as carryovers in the brief output).
+
+**After updating**, append this to the brief output:
+
+```
+ACTION TRACKER
+- [N] action items logged for today (run /actions list to review)
+- [M] carryovers from earlier this week
+```
+
 ## Critical Rules
 
 1. For EVERY item in ACTION NEEDED, apply these Extreme Ownership reframes — do NOT just state blockers:
@@ -118,7 +181,7 @@ If running the brief on subsequent days and friction entries already exist for t
    - "I've asked someone to handle it" -> Can I learn to do this myself?
    - "I'm blocked" -> What can I do right now while working on removing this blocker?
 
-2. **Link EVERYTHING.** Every reference to a source must be a clickable link — issues, support tickets, Slack threads, email threads. Use markdown link syntax `[display text](url)`. If a URL was returned by a tool, use it. No bare IDs without links.
+2. **Link EVERYTHING.** Every reference to a source must be a clickable link — issues, support tickets, Slack threads, email threads, call recordings. Use markdown link syntax `[display text](url)`. If a URL was returned by a tool, use it. No bare IDs without links.
 3. Keep the brief output (excluding the friction log section) under 60 lines. Be terse. No filler.
 4. If there are no items in a section, write "Clear" and move on.
 5. Sort ACTION NEEDED by priority (Urgent > High > Medium > Low), then by staleness (longest-waiting first).

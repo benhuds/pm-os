@@ -47,6 +47,13 @@ Read all files in the `friction/active/` and `friction/dissolved/` directories i
 - Friction entries dissolved this week
 - Active friction entries and their current status
 
+### 8. Weekly Action Tracker
+Read the current week's action file at `actions/week-YYYY-MM-DD.md` (Monday of this week). Use it to:
+- Count completed vs open action items (checked vs unchecked)
+- Pull "Other Actions" logged throughout the week as evidence of work done
+- Identify patterns (e.g., "5 of 8 actions were onboarding-related")
+- Feed completed items into the "Building" and "Customer Engagements" sections
+
 ## Output Format
 
 Generate output in this exact format (ready to paste into the 1:1 doc):

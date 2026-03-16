@@ -38,6 +38,27 @@ Same placeholders as `/brief`, plus:
 |---|---|---|
 | `[your manager]` | `Sarah Chen` | Who the 1:1 doc is shared with |
 
+### `/brief` — Team Board (new in v2)
+
+The brief now scans your team's customer issues board for full visibility, even on issues not assigned to you. Configure:
+
+| Placeholder | Example | Description |
+|---|---|---|
+| `[your team board team]` | `Platform` | The team/project in your issue tracker that holds customer issues |
+| `[your team board label]` | `Customer Issue` | The label used to tag customer-facing issues |
+
+### `/brief` — Slack Mentions (new in v2)
+
+The brief searches for threads where you were tagged and classifies them as needing your input or just monitoring. Configure:
+
+| Placeholder | Example | Description |
+|---|---|---|
+| `[your name]` | `Jane Smith` | Your name as it appears in Slack mentions |
+
+### `/actions` skill (`.claude/skills/actions/skill.md`)
+
+No placeholders needed — this skill is fully generic. It reads/writes `actions/week-YYYY-MM-DD.md` files and cross-references your friction log.
+
 ### Glean Agent (`glean-agent-daily-brief.md`)
 
 Same keyword and channel replacements. Follow the setup instructions in the file to create the Glean Agent.
@@ -67,6 +88,12 @@ cd ~/pm-os
 # Check the friction log
 /friction list
 
+# Log an action
+/actions prepped onboarding doc for Acme
+
+# See your scorecard
+/actions list
+
 # On Friday, run the weekly reflection
 /weekly
 ```
@@ -74,8 +101,10 @@ cd ~/pm-os
 ## Step 5: Make It a Habit
 
 - **Morning**: Check the Glean Agent DM, or run `/brief`
-- **Throughout the day**: `/friction update [customer]` as you make moves
+- **Throughout the day**: `/actions log [what you did]` to track your moves
+- **When a customer is stuck**: `/friction add [details]`
 - **When something resolves**: `/friction dissolve [customer]`
+- **End of week**: `/actions carryover` to clean up stale items
 - **Friday**: `/weekly` to pre-fill your reflection, then paste into your 1:1 doc
 
 ## Adapting for Different Tools
