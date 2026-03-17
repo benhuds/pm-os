@@ -24,18 +24,20 @@ Use Glean search with `app: zendesk` (or your support platform) to find open tic
 ### 4. Slack Signals
 Run TWO Glean searches for Slack:
 
-**a) Mentions of you:** Search `app: slack` for "[your name]" with `updated: past_week`. Look for threads where someone tagged you and is waiting for a response. Classify each as:
+**a) Mentions of you + threads you participated in:** Run TWO searches: (1) Search `app: slack` for "[your name]" with `updated: past_week`, and (2) Search `app: slack` for `*` with `from: me` and `updated: past_week` to catch threads you replied in but weren't tagged. Merge and deduplicate results. Classify each as:
 - **Needs your input** — someone asked you a question or tagged you for review, and you haven't responded (or the thread moved on without your input)
 - **You responded, monitor** — you already replied but the thread is still active
 - Skip threads you initiated yourself or where no action is needed from you.
 
 **b) Keyword signals:** Search `app: slack` for "[your product area keywords] blocker escalation" with `updated: today` to catch new escalations or customer issues in any channel.
 
+**Note:** Private Slack channels and DMs are NOT indexed by Glean and will not appear in these searches. This is a known blind spot.
+
 ### 5. Email
 Use Glean search with `app: gmailnative` to find recent emails mentioning [your product area keywords] involving [your name]. Note if a response is needed.
 
 ### 6. Call Recordings
-Use Glean search with `app: gong` (or your recording tool) for calls from the past 48 hours mentioning [your product area keywords]. Look for: customer pain points or escalations, blockers raised on calls, feature requests, and any negative sentiment. Note: customer name, call participants, and the key signal.
+Use Glean search with `app: gong` (or your recording tool) for calls from the past 7 days mentioning [your product area keywords] (use `updated: past_week`). Look for: customer pain points or escalations, blockers raised on calls, feature requests, and any negative sentiment. Note: customer name, call participants, and the key signal.
 
 ### 7. Existing Friction Log
 Read all files in `friction/active/` to know what's already being tracked. This is critical to avoid duplicates when auto-generating new friction entries.

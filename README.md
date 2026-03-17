@@ -141,6 +141,12 @@ The Extreme Ownership mindset calls out conversations we need to stop having. Th
 | "I've asked someone to handle onboarding." | `/brief` flags stale handoffs so you can learn to do it yourself       |
 | "I'm blocked."                             | Daily brief reframes every blocker with "what can you do right now?"   |
 
+## Known Blind Spots
+
+- **Private Slack channels and DMs** are not indexed by Glean. The brief will not surface signals from private conversations. If important discussions happen in private channels, you'll need to manually `/actions log` them.
+- **Real-time signals**: The brief is a point-in-time snapshot when you run it. If you get tagged on your issue tracker or Slack after running `/brief`, it won't show up until the next run.
+- **Support ticket status vs. reality**: SLA breach labels in support ticket metadata can lag behind the actual conversation. The brief reads full ticket conversations before creating friction entries, but Support Pulse counts may still include tickets that are further along than their status suggests.
+
 ## Getting Started
 
 See [SETUP.md](./SETUP.md) for full configuration instructions.
