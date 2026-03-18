@@ -60,34 +60,55 @@ If a specific customer or area was provided as an argument, prioritize and filte
 
 Format the output exactly like this:
 
+The brief is organized into four sections: ACTIONS, CUSTOMER ENGAGEMENTS, SIGNALS, and SUMMARY.
+
 ```
 Daily Brief — [today's date]
+
+--- ACTIONS ---
 
 ACTION NEEDED (waiting on you)
 - [Issue ID](issue-url): [one-line summary] — [customer]
   -> Your move: [specific action to take RIGHT NOW]
+(Includes carryovers from earlier this week — sorted by staleness, oldest first. No separate carryovers section. If it is open and waiting on you, it is here.)
+
+WAITING ON OTHERS
+- [Issue ID](issue-url): [one-line summary] — [customer] — waiting on [who] since [date]
+(Issues assigned to you where your last action was a response/comment and the thread is waiting on someone else. Check issue comments and Slack threads to determine if ball is in your court or theirs.)
 
 UNCLAIMED OPPORTUNITIES
 - [Issue ID](issue-url): [customer] — [summary] — [priority]
 
-SUPPORT PULSE
-- [X] open support tickets mentioning [your product area]
-- SLA risk: [any breaches or near-breaches, linking to each ticket e.g. [#NNNNN](ticket-url)]
-- Hottest ticket: [#NNNNN](ticket-url) — [most urgent + why]
+--- CUSTOMER ENGAGEMENTS ---
 
-SLACK SIGNALS
+ACTIVE ([X] engagements)
+[List all open issues from your customer engagements project:]
+- [Issue ID](issue-url): [customer] — [current phase/status] — [next action + date if known]
+(Flag engagements with no update in >7 days or upcoming calls/demos this week)
+
+--- SIGNALS ---
+
+SLACK
 Needs your input:
-- [thread summary — who's waiting, what they need] ([thread](slack-url))
+- [thread summary — who is waiting, what they need] ([thread](slack-url))
 You responded, monitor:
 - [thread summary] ([thread](slack-url))
 New signals:
 - [one-line per notable keyword-matched thread] ([thread](slack-url))
 
+CALL RECORDINGS (past 7 days)
+New since last brief run:
+- [one-line per notable NEW call] ([call](call-url))
+Previously surfaced:
+- [one-line summary of calls from earlier briefs this week, with status: handled/monitoring/no action]
+
 EMAIL
 - [one-line per thread needing response] ([thread](email-url))
 
-CALL SIGNALS
-- [one-line per notable call] ([call](call-url))
+SUPPORT PULSE
+- [X] open support tickets mentioning [your product area]
+- SLA risk: [any breaches or near-breaches, linking to each ticket e.g. [#NNNNN](ticket-url)]
+- Hottest ticket: [#NNNNN](ticket-url) — [most urgent + why]
 
 TEAM CUSTOMER ISSUES ([X] open)
 [List ALL open issues (exclude Done, Resolved, Cancelled, Closed). Group by priority:]
@@ -96,12 +117,16 @@ TEAM CUSTOMER ISSUES ([X] open)
 [Medium] [Issue ID](issue-url): [customer] — [summary] — [assignee] — [status]
 (This section is read-only visibility — no friction entries auto-created from here)
 
-CARRYOVERS (from earlier this week)
-- [ ] [unchecked item from previous days] — [customer] ([source](url))
-(If no carryovers or it's Monday: "Fresh week")
+--- SUMMARY ---
 
 TODAY'S FOCUS
 Based on everything above, the single highest-leverage thing you can do for a customer today: [recommendation]
+
+FRICTION LOG
+- Created [N] new / [M] active (run /friction list to review)
+
+ACTION TRACKER
+- [X]/[Y] completed today (run /actions list for scorecard)
 ```
 
 ## Auto-Generate Friction Entries
@@ -140,14 +165,6 @@ status: active
 - [today's date]: Identified in daily brief. [brief context on current state]
 ```
 
-**After creating entries**, append this section to the brief output:
-
-```
-FRICTION LOG
-- Created [N] new entries: [list customer — slug for each]
-- [M] existing entries still active (run /friction list to review)
-```
-
 If running the brief on subsequent days and friction entries already exist for the same customer+topic, do NOT create duplicates. Instead, append a progress entry to the existing file with any new information from today's brief.
 
 ## Auto-Generate Weekly Action Items
@@ -164,15 +181,7 @@ After generating friction entries, update the weekly action tracker at `actions/
    - Unclaimed opportunity worth claiming
 4. Each item must include: customer name, one-line action, and a linked source.
 5. For items that also have a `friction/active/` entry, still add an action item but prefix with a fire indicator and reference the friction file. This ensures friction items appear on the weekly scorecard and nothing falls through the cracks.
-6. If previous days in the same week have unchecked items, leave them as-is (they'll show as carryovers in the brief output).
-
-**After updating**, append this to the brief output:
-
-```
-ACTION TRACKER
-- [N] action items logged for today (run /actions list to review)
-- [M] carryovers from earlier this week
-```
+6. If previous days in the same week have unchecked items, fold them into ACTION NEEDED (sorted by staleness, oldest first). No separate carryovers section.
 
 ## Critical Rules
 
@@ -183,7 +192,9 @@ ACTION TRACKER
    - "I've asked someone to handle it" -> Can I learn to do this myself?
    - "I'm blocked" -> What can I do right now while working on removing this blocker?
 
-2. **Link EVERYTHING.** Every reference to a source must be a clickable link — issues, support tickets, Slack threads, email threads, call recordings. Use markdown link syntax `[display text](url)`. If a URL was returned by a tool, use it. No bare IDs without links.
-3. Keep the brief output (excluding the friction log section) under 60 lines. Be terse. No filler.
-4. If there are no items in a section, write "Clear" and move on.
-5. Sort ACTION NEEDED by priority (Urgent > High > Medium > Low), then by staleness (longest-waiting first).
+2. **Classify "assigned to me" correctly.** Before putting an issue in ACTION NEEDED, check the latest comments and Slack threads. If your last action was a response/question and the thread is waiting on someone else, put it in WAITING ON OTHERS instead. Only items where you genuinely need to take the next step belong in ACTION NEEDED.
+3. **Persist signals across same-day runs.** When the brief is run multiple times in the same day, signals from earlier runs must carry forward. Show new signals as "New since last run" and earlier signals as "Previously surfaced" with their current status. Do not drop signals between runs.
+4. **Link EVERYTHING.** Every reference to a source must be a clickable link — issues, support tickets, Slack threads, email threads, call recordings. Use markdown link syntax `[display text](url)`. If a URL was returned by a tool, use it. No bare IDs without links.
+5. Keep the brief output (excluding the friction log section) under 60 lines. Be terse. No filler.
+6. If there are no items in a section, write "Clear" and move on.
+7. Sort ACTION NEEDED by priority (Urgent > High > Medium > Low), then by staleness (longest-waiting first).
