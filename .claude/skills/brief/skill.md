@@ -65,30 +65,30 @@ The brief is organized into four sections: ACTIONS, CUSTOMER ENGAGEMENTS, SIGNAL
 ```
 Daily Brief — [today's date]
 
---- ACTIONS ---
+━━━ ACTIONS ━━━
 
-ACTION NEEDED (waiting on you)
+⚡ ACTION NEEDED (waiting on you)
 - [Issue ID](issue-url): [one-line summary] — [customer]
   -> Your move: [specific action to take RIGHT NOW]
 (Includes carryovers from earlier this week — sorted by staleness, oldest first. No separate carryovers section. If it is open and waiting on you, it is here.)
 
-WAITING ON OTHERS
+⏳ WAITING ON OTHERS
 - [Issue ID](issue-url): [one-line summary] — [customer] — waiting on [who] since [date]
 (Issues assigned to you where your last action was a response/comment and the thread is waiting on someone else. Check issue comments and Slack threads to determine if ball is in your court or theirs.)
 
-UNCLAIMED OPPORTUNITIES
+🆕 UNCLAIMED OPPORTUNITIES
 - [Issue ID](issue-url): [customer] — [summary] — [priority]
 
---- CUSTOMER ENGAGEMENTS ---
+━━━ CUSTOMER ENGAGEMENTS ━━━
 
-ACTIVE ([X] engagements)
+🤝 ACTIVE ([X] engagements)
 [List all open issues from your customer engagements project:]
 - [Issue ID](issue-url): [customer] — [current phase/status] — [next action + date if known]
 (Flag engagements with no update in >7 days or upcoming calls/demos this week)
 
---- SIGNALS ---
+━━━ SIGNALS ━━━
 
-SLACK
+💬 SLACK
 Needs your input:
 - [thread summary — who is waiting, what they need] ([thread](slack-url))
 You responded, monitor:
@@ -96,36 +96,36 @@ You responded, monitor:
 New signals:
 - [one-line per notable keyword-matched thread] ([thread](slack-url))
 
-CALL RECORDINGS (past 7 days)
+🎙️ CALL RECORDINGS (past 7 days)
 New since last brief run:
 - [one-line per notable NEW call] ([call](call-url))
 Previously surfaced:
 - [one-line summary of calls from earlier briefs this week, with status: handled/monitoring/no action]
 
-EMAIL
+📧 EMAIL
 - [one-line per thread needing response] ([thread](email-url))
 
-SUPPORT PULSE
+🎫 SUPPORT PULSE
 - [X] open support tickets mentioning [your product area]
 - SLA risk: [any breaches or near-breaches, linking to each ticket e.g. [#NNNNN](ticket-url)]
 - Hottest ticket: [#NNNNN](ticket-url) — [most urgent + why]
 
-TEAM CUSTOMER ISSUES ([X] open)
+🏥 TEAM CUSTOMER ISSUES ([X] open)
 [List ALL open issues (exclude Done, Resolved, Cancelled, Closed). Group by priority:]
 [Urgent] [Issue ID](issue-url): [customer] — [summary] — [assignee] — [status]
 [High] [Issue ID](issue-url): [customer] — [summary] — [assignee] — [status]
 [Medium] [Issue ID](issue-url): [customer] — [summary] — [assignee] — [status]
 (This section is read-only visibility — no friction entries auto-created from here)
 
---- SUMMARY ---
+━━━ SUMMARY ━━━
 
-TODAY'S FOCUS
+📊 TODAY'S FOCUS
 Based on everything above, the single highest-leverage thing you can do for a customer today: [recommendation]
 
-FRICTION LOG
+🔥 FRICTION LOG
 - Created [N] new / [M] active (run /friction list to review)
 
-ACTION TRACKER
+📝 ACTION TRACKER
 - [X]/[Y] completed today (run /actions list for scorecard)
 ```
 
