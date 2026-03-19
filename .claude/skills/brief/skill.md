@@ -68,13 +68,12 @@ Daily Brief — [today's date]
 ━━━ ACTIONS ━━━
 
 ⚡ ACTION NEEDED (waiting on you)
-- [Issue ID](issue-url): [one-line summary] — [customer]
+- **[Topic]** — [description] ([source](url))
   -> Your move: [specific action to take RIGHT NOW]
-(Includes carryovers from earlier this week — sorted by staleness, oldest first. No separate carryovers section. If it is open and waiting on you, it is here.)
+(Every item uses the same format: bold topic, dash, description, linked source. Includes carryovers sorted by staleness. Source can be an issue, Slack thread, support ticket, or email — whatever is most relevant.)
 
 ⏳ WAITING ON OTHERS
-- [Issue ID](issue-url): [one-line summary] — [customer] — waiting on [who] since [date]
-(Issues assigned to you where your last action was a response/comment and the thread is waiting on someone else. Check issue comments and Slack threads to determine if ball is in your court or theirs.)
+- **[Topic]** — [description] — waiting on [who] since [date] ([source](url))
 
 🆕 UNCLAIMED OPPORTUNITIES
 - [Issue ID](issue-url): [customer] — [summary] — [priority]
@@ -90,11 +89,12 @@ Daily Brief — [today's date]
 
 💬 SLACK
 Needs your input:
-- [thread summary — who is waiting, what they need] ([thread](slack-url))
+- **[Topic]** — [who is waiting, what they need] ([thread](slack-url))
 You responded, monitor:
-- [thread summary] ([thread](slack-url))
+- **[Topic]** — [status summary] ([thread](slack-url))
 New signals:
-- [one-line per notable keyword-matched thread] ([thread](slack-url))
+- **[Topic]** — [one-line summary] ([thread](slack-url))
+(Use the same bold-topic format as ACTION NEEDED. If a Slack thread is already listed in ACTION NEEDED, do NOT repeat it here — just skip it.)
 
 🎙️ CALL RECORDINGS (past 7 days)
 New since last brief run:
