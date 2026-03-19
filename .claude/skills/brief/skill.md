@@ -34,7 +34,10 @@ Run TWO Glean searches for Slack:
 **Note:** Private Slack channels and DMs are NOT indexed by Glean and will not appear in these searches. This is a known blind spot.
 
 ### 5. Email
-Use Glean search with `app: gmailnative` to find recent emails mentioning [your product area keywords] involving [your name]. Note if a response is needed.
+Run TWO Glean searches for email:
+**a)** Search `app: gmailnative` for [your product area keywords] with `from: me` and `updated: past_week` — catches threads you sent.
+**b)** Search `app: gmailnative` for [your product area keywords] with `updated: past_week` (no from filter) — catches threads where customers replied to you.
+Note if a response is needed. Look for threads updated recently where you haven't replied.
 
 ### 6. Call Recordings
 Use Glean search with `app: gong` (or your recording tool) for calls from the past 7 days mentioning [your product area keywords] (use `updated: past_week`). Look for: customer pain points or escalations, blockers raised on calls, feature requests, and any negative sentiment. Note: customer name, call participants, and the key signal.
