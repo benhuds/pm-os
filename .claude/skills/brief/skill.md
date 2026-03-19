@@ -131,17 +131,19 @@ Based on everything above, the single highest-leverage thing you can do for a cu
 
 ## Auto-Generate Friction Entries
 
-After generating the brief output, automatically create friction entries for items that meet ANY of these criteria:
+After generating the brief output, consider whether any items warrant a friction entry. Friction is ONLY for situations where the PM personally needs to act to change a customer's situation. Apply this test: **"If I removed myself from the equation, would this issue still get resolved the same way?"** If yes, it's not friction — it's a team issue being handled normally.
 
-1. **Overdue items** — Issues past their due date with a customer attached
-2. **SLA-breached tickets** — Support tickets with SLA breach in your product area
-3. **Stuck customers** — Customers blocked on onboarding for >24h
-4. **Stale high-priority items** — High/Urgent priority issues with no update in >14 days
+Only create friction entries when:
+1. **You personally need to step in** — the normal support/eng process isn't enough (e.g., email the customer directly, build a workaround yourself)
+2. **A product decision from you** is the blocker — the team is waiting on your direction
+3. **The normal system failed** — support dropped the ball, customer escalated, or nothing has moved despite SLA breach
 
-**Do NOT create friction for:**
-- Normal in-progress work that's moving
-- Internal/non-customer items
-- Items that already have an active friction entry (check existing files in `friction/active/` first — match by customer name and topic)
+Do NOT create friction for:
+- Issues where eng/support is handling it normally through the standard process
+- SLA breaches where support is actively working the ticket — that's a support metric, not your friction
+- Issues you're just monitoring — tracking is not friction
+- Tickets that are progressing, even if slowly
+- Items that already have an active friction entry (check `friction/active/` first)
 
 **For each qualifying item**, create a file at `friction/active/[today's date]-[customer-slug].md` using this format:
 

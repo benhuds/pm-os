@@ -19,14 +19,18 @@ Read all files in `friction/active/` and `friction/dissolved/` (only dissolved i
 Active Friction ([count])
 
 [For each active entry, sorted by date opened (oldest first):]
-* [customer] — [friction summary] (opened [date], [days ago])
+* **[customer]** — [friction summary] (opened [date], [days ago])
   My move: [current action]
   Last update: [most recent progress entry]
+  Links: [issue](url), [ticket](url), [thread](url) — link to ALL relevant sources
 
 Recently Dissolved ([count in last 14 days])
 [For each dissolved entry:]
-* [customer] — [friction summary] (dissolved [date])
+* **[customer]** — [friction summary] (dissolved [date])
   How: [summary of resolution]
+  Links: [source](url)
+
+Link everything. Every friction entry must include clickable links to the relevant issue, support ticket, Slack thread, or other source.
 ```
 
 If any active friction has no progress update in the past 7 days, flag it:
@@ -59,6 +63,21 @@ Then:
 
 ### `update [identifier]`
 Find the matching file in `friction/active/`. Ask the user what the update is, then append a new dated progress entry to the file.
+
+## When to Create Friction (and When NOT to)
+
+Only create friction entries where:
+1. **You personally need to act** to unblock the customer — the normal support/eng process isn't enough and you're stepping in directly (e.g., emailing the customer yourself, building a workaround)
+2. **A product decision from you** is the blocker — the team is waiting on your direction to proceed
+3. **The normal system failed** and you're intervening — support dropped the ball, customer escalated, or nothing has moved despite SLA breach
+
+Do NOT create friction for:
+- Issues where eng/support is handling it normally through the standard process
+- SLA breaches where support is actively working the ticket — that's a support metric, not your friction
+- Issues you're just monitoring — tracking is not friction
+- Tickets that are progressing, even if slowly
+
+**The test: "Did I do something that changed this customer's situation?"** If you removed yourself from the equation and the issue would still get resolved the same way, it's not friction — it's a team issue being handled.
 
 ## Critical Rules
 
