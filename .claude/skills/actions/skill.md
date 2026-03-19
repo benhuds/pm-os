@@ -64,11 +64,24 @@ If the input is too vague to augment confidently (e.g., `/actions did the thing`
 ### `carryover`
 
 1. Read the current week's file.
-2. Find all unchecked `- [ ]` items.
+2. Find all unchecked `- [ ]` items (excluding `[backlog]` items).
 3. Display them and ask which ones to:
    - Carry forward to today (re-add as today's action item)
    - Drop (no longer relevant)
+   - Move to backlog (deliberate decision to defer — won't show in daily brief)
    - Convert to friction (if a customer is stuck)
+
+## Effort Tags
+
+Tag each action item with estimated effort:
+- `[5m]` — Quick: one message, one click, one check
+- `[30m]` — Medium: focused work, one sitting
+- `[2h+]` — Deep: needs a dedicated time block
+- `[backlog]` — Not this week: deliberate decision to defer
+
+Items tagged `[backlog]` do NOT appear in the daily brief's ACTION NEEDED section. They only show in `/actions list` under a separate Backlog section. This prevents guilt-tripping on items that are intentionally deferred.
+
+When the brief generates action items, it should estimate effort and tag accordingly. Sort by effort (smallest first) so quick wins are at the top.
 
 ## Critical Rules
 

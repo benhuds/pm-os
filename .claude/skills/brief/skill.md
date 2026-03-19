@@ -68,9 +68,13 @@ Daily Brief — [today's date]
 ━━━ ACTIONS ━━━
 
 ⚡ ACTION NEEDED (waiting on you)
-- **[Topic]** — [description] ([source](url))
-  -> Your move: [specific action to take RIGHT NOW]
-(Every item uses the same format: bold topic, dash, description, linked source. Includes carryovers sorted by staleness. Source can be an issue, Slack thread, support ticket, or email — whatever is most relevant.)
+- `[5m]` **[Topic]** — [description] ([source](url))
+  -> Your move: [specific action]
+- `[30m]` **[Topic]** — [description] ([source](url))
+  -> Your move: [specific action]
+- `[2h+]` **[Topic]** — [description] ([source](url))
+  -> Your move: [specific action]
+(Tag each item with effort: [5m] quick, [30m] medium, [2h+] deep work. Sort smallest to largest so quick wins are at the top. Includes carryovers. Items tagged [backlog] do NOT appear here — they only show in /actions list.)
 
 ⏳ WAITING ON OTHERS
 - **[Topic]** — [description] — waiting on [who] since [date] ([source](url))
